@@ -1,6 +1,7 @@
 #include "ModbusDevices.h"
-#include <QtUiTools>
+#include "DeviceWidget.h"
 #include "Settings.hpp"
+#include "c:\Qt\4.8.3\include\QtCore\QThreadPool"
 
 QSettings *Settings::m_Settings = NULL;
 
@@ -10,17 +11,10 @@ ModbusDevices::ModbusDevices(QWidget *parent)
   ui.setupUi(this);
   LOG_INFO("START");
 
-  QUiLoader loader;
-
-  QFile file("D:\\_projects\\rio\\util\\ModbusDevices\\ModbusDevices\\Template.ui");
-  file.open(QFile::ReadOnly);
-  QWidget *formWidget = loader.load(&file);
-  file.close();
-
   ui.tabWidget->clear();
-  ui.tabWidget->addTab(formWidget, formWidget->windowTitle());
 
-
+  addDevice("D:\\_projects\\ModbusDevices\\ModbusDevices\\Example.ui");
+  
   SETTINGS->beginGroup("MainWindow");
   restoreGeometry(SETTINGS->value("geometry").toByteArray());
   restoreState(SETTINGS->value("state").toByteArray());
@@ -36,4 +30,21 @@ ModbusDevices::~ModbusDevices()
   SETTINGS->setValue("splitter", ui.splitter->saveState());
   SETTINGS->sync();
   SETTINGS->endGroup();
+}
+
+void ModbusDevices::addDevice(const QString& ui_file)
+{
+  LOG_INFO("Add widget from file: %s", ui_file.toUtf8().constData());
+  DeviceWidget* widget(new DeviceWidget(this));
+  try
+  {
+    widget->load(ui_file);
+    ui.tabWidget->addTab(widget, widget->windowTitle());
+  }
+  catch (std::exception ex)
+  {
+    delete widget;
+    LOG_ERROR("Failed: %s", ex.what());
+  }
+  
 }

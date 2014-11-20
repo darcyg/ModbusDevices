@@ -41,3 +41,12 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+GeneratedFiles/
+Debug/
+Releasae/
+ModbusDevices/ModbusDevices.vcxproj.filters
+ModbusDevices/ModbusDevices.vcxproj.user
+*.suo
+*.sdf
+ModbusDevices/config.ini

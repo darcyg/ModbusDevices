@@ -2,10 +2,9 @@
 #define _LOGGER_WIDGET_H
 
 #include <QTextEdit>
-#define LOG_INFO(msg,...)  LoggerWidget::print(LoggerWidget::Info, msg, __VA_ARGS__)
-#define LOG_ERROR(msg,...)  LoggerWidget::print(LoggerWidget::Error, msg, __VA_ARGS__)
-
-#define QLOG_INFO(msg,...)  LoggerWidget::print(LoggerWidget::Info, msg, __VA_ARGS__)
+#include "stdarg.h"
+#include "stdarg.h"
+#include <QDateTime>
 
 class LoggerWidget : public QTextEdit
 {
@@ -24,10 +23,10 @@ public:
     Debug   = 2
   };
 
-  //virtual void print( int level, const char* msg, ... );
-
-  static void print( Level level, const char* msg, ... );
-  static void print( Level level, QString& msg, ... );
+  static void print(Level level, const char* msg, ...);
+  static void print(Level level, const QString& msg);
+  static void print(Level level, const std::string& msg);
+  static void printv(Level level, const char *msg, va_list vlist);
 
 signals:
   void print_signal( int level, QString msg );
@@ -36,9 +35,63 @@ public slots:
   void print_slot(int level, QString msg);
 
 private:
+  static void print_base(Level level, const QString& msg);
   static LoggerWidget *instance;
 };
 
+inline void LOG_INFO(const char* msg, ...)
+{
+  va_list vl;
+  va_start(vl, msg);
+  LoggerWidget::printv(LoggerWidget::Info, msg, vl);
+  va_end(vl);
+}
+
+inline void LOG_INFO(const QString& msg)
+{
+  LoggerWidget::print(LoggerWidget::Info, msg);
+}
+
+inline void LOG_INFO(const std::string& msg)
+{
+  LoggerWidget::print(LoggerWidget::Info, msg);
+}
+
+inline void LOG_ERROR(const char* msg, ...)
+{
+  va_list vl;
+  va_start(vl, msg);
+  LoggerWidget::printv(LoggerWidget::Error, msg, vl);
+  va_end(vl);
+}
+
+inline void LOG_ERROR(const QString& msg)
+{
+  LoggerWidget::print(LoggerWidget::Error, msg);
+}
+
+inline void LOG_ERROR(const std::string& msg)
+{
+  LoggerWidget::print(LoggerWidget::Error, msg);
+}
+
+inline void LOG_SUCCESS(const char* msg, ...)
+{
+  va_list vl;
+  va_start(vl, msg);
+  LoggerWidget::printv(LoggerWidget::Success, msg, vl);
+  va_end(vl);
+}
+
+inline void LOG_SUCCESS(const QString& msg)
+{
+  LoggerWidget::print(LoggerWidget::Success, msg);
+}
+
+inline void LOG_SUCCESS(const std::string& msg)
+{
+  LoggerWidget::print(LoggerWidget::Success, msg);
+}
 
 #endif // QLOGGER_H
 

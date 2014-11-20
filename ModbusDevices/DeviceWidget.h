@@ -3,17 +3,23 @@
 
 #include <QWidget>
 #include "ui_DeviceWidget.h"
+#include "LoggerWidget.h"
+#include "Register.h"
+#include <memory>
 
 class DeviceWidget : public QWidget
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    DeviceWidget(QWidget *parent = 0);
-    ~DeviceWidget();
+  DeviceWidget(QWidget *parent);
+  ~DeviceWidget();
+  void load(const QString& ui_file);
 
 private:
-    Ui::DeviceWidget ui;
+  Ui::DeviceWidget          ui;
+  std::shared_ptr<QWidget>  widget;
+  std::vector<Register>     registers;
 };
 
 #endif // DEVICEWIDGET_H

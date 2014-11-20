@@ -11,7 +11,7 @@ class ModbusDevices : public QMainWindow
 public:
     ModbusDevices(QWidget *parent = 0);
     ~ModbusDevices();
-
+    void addDevice(const QString& ui_file);
 private:
     Ui::ModbusDevicesClass ui;
 };
