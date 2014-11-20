@@ -45,8 +45,8 @@ Temporary Items
 GeneratedFiles/
 Debug/
 Releasae/
-ModbusDevices/ModbusDevices.vcxproj.filters
 ModbusDevices/ModbusDevices.vcxproj.user
 *.suo
 *.sdf
 ModbusDevices/config.ini
+ModbusDevices.opensdf
