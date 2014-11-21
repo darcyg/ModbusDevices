@@ -4,7 +4,6 @@
 #include <QTextEdit>
 #include "stdarg.h"
 #include "stdarg.h"
-#include <QDateTime>
 
 class LoggerWidget : public QTextEdit
 {

@@ -1,12 +1,11 @@
-#include "ModbusDevices.h"
 #include "DeviceWidget.h"
+#include "ModbusDevices.h"
 #include "Settings.hpp"
-#include "c:\Qt\4.8.3\include\QtCore\QThreadPool"
 
 QSettings *Settings::m_Settings = NULL;
 
 ModbusDevices::ModbusDevices(QWidget *parent)
-    : QMainWindow(parent)
+: QMainWindow(parent)
 {
   ui.setupUi(this);
   LOG_INFO("START");

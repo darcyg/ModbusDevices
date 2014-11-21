@@ -22,6 +22,9 @@
     <Filter Include="jsoncpp\json">
       <UniqueIdentifier>{47e9db5f-4774-44d7-8e78-dc416bbf3ebc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="libmodbus">
+      <UniqueIdentifier>{96c3d3a6-c92b-4c2d-bd4e-94b6b2b2c878}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_ModbusDevices.cpp">
@@ -52,9 +55,23 @@
     <ClCompile Include="jsoncpp\json_writer.cpp">
       <Filter>jsoncpp</Filter>
     </ClCompile>
-    <ClCompile Include="Register.cpp">
-      <Filter>Generated Files</Filter>
+    <ClCompile Include="Register.cpp" />
+    <ClCompile Include="libmodbus\modbus.c">
+      <Filter>libmodbus</Filter>
     </ClCompile>
+    <ClCompile Include="libmodbus\modbus-data.c">
+      <Filter>libmodbus</Filter>
+    </ClCompile>
+    <ClCompile Include="libmodbus\modbus-rtu.c">
+      <Filter>libmodbus</Filter>
+    </ClCompile>
+    <ClCompile Include="libmodbus\modbus-tcp.c">
+      <Filter>libmodbus</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Device.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Device.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_ModbusDevices.h">
@@ -90,8 +107,30 @@
     <ClInclude Include="jsoncpp\json\writer.h">
       <Filter>jsoncpp\json</Filter>
     </ClInclude>
-    <ClInclude Include="Register.h">
-      <Filter>Generated Files</Filter>
+    <ClInclude Include="Register.h" />
+    <ClInclude Include="libmodbus\config.h">
+      <Filter>libmodbus</Filter>
+    </ClInclude>
+    <ClInclude Include="libmodbus\modbus.h">
+      <Filter>libmodbus</Filter>
+    </ClInclude>
+    <ClInclude Include="libmodbus\modbus-private.h">
+      <Filter>libmodbus</Filter>
+    </ClInclude>
+    <ClInclude Include="libmodbus\modbus-rtu.h">
+      <Filter>libmodbus</Filter>
+    </ClInclude>
+    <ClInclude Include="libmodbus\modbus-rtu-private.h">
+      <Filter>libmodbus</Filter>
+    </ClInclude>
+    <ClInclude Include="libmodbus\modbus-tcp.h">
+      <Filter>libmodbus</Filter>
+    </ClInclude>
+    <ClInclude Include="libmodbus\modbus-tcp-private.h">
+      <Filter>libmodbus</Filter>
+    </ClInclude>
+    <ClInclude Include="libmodbus\modbus-version.h">
+      <Filter>libmodbus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -103,8 +142,7 @@
     <CustomBuild Include="ModbusDevices.ui" />
     <CustomBuild Include="Settings.hpp" />
     <CustomBuild Include="DeviceWidget.ui" />
-    <CustomBuild Include="DeviceWidget.h">
-      <Filter>Generated Files</Filter>
-    </CustomBuild>
+    <CustomBuild Include="DeviceWidget.h" />
+    <CustomBuild Include="Device.h" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,8 @@
 #include "Register.h"
 #include "jsoncpp/json/reader.h"
+#include "libmodbus/modbus.h"
 
-Register::Register() : _function(0), _address(0), _format("")
+Register::Register() : _function(MODBUS_READ_HOLDING_REGISTERS), _address(0), _format("")
 {
 }
 

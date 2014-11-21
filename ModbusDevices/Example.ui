@@ -23,48 +23,116 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Test</string>
+   <string>Test!!!</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">&quot;addr&quot; : 1, &quot;fdmt&quot; : &quot;{.}&quot;</string>
+   <string notr="true">&quot;addr&quot; : 1</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>30</x>
      <y>30</y>
-     <width>46</width>
-     <height>13</height>
+     <width>21</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>0:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>60</x>
      <y>30</y>
      <width>113</width>
      <height>20</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">&quot;addr&quot;:1, &quot;fmt&quot;:&quot;{.1}&quot;</string>
+    <string notr="true">&quot;addr&quot;:0, &quot;func&quot;:4, &quot;fmt&quot;:&quot;{.1}&quot;</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_2">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>110</y>
+     <x>60</x>
+     <y>60</y>
      <width>113</width>
      <height>20</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">&quot;asd&quot;:21</string>
+    <string notr="true">&quot;addr&quot;:1, &quot;func&quot;:4</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>60</y>
+     <width>21</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>1:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>160</y>
+     <width>21</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>5:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_3">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>160</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">&quot;addr&quot;:5, &quot;func&quot;:4</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>90</y>
+     <width>21</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>2:</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>90</y>
+     <width>70</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">&quot;addr&quot;:3, &quot;func&quot;:4</string>
+   </property>
+   <property name="text">
+    <string>CheckBox</string>
    </property>
   </widget>
  </widget>

@@ -357,7 +357,10 @@ static int receive_msg(modbus_t *ctx, uint8_t *msg, msg_type_t msg_type)
     if (msg_type == MSG_INDICATION) {
         /* Wait for a message, we don't know when the message will be
          * received */
-        p_tv = NULL;
+      tv.tv_sec = ctx->response_timeout.tv_sec;
+      tv.tv_usec = ctx->response_timeout.tv_usec;
+      p_tv = &tv;
+//        p_tv = NULL;
     } else {
         tv.tv_sec = ctx->response_timeout.tv_sec;
         tv.tv_usec = ctx->response_timeout.tv_usec;
