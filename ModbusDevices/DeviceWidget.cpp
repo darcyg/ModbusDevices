@@ -6,9 +6,18 @@
 #include <QtSerialPort/QSerialPortInfo>
 #include "Settings.hpp"
 #include "jsoncpp/json/reader.h"
+#include "DeviceModbus.h"
+#include "IncludeMe.h"
+
+static Device* createDevice(const std::string& cls, int slave_id)
+{
+  if (cls == "DeviceModbus")
+    return new DeviceModbus(slave_id);
+  return nullptr;
+}
 
 DeviceWidget::DeviceWidget(QWidget *parent)
-: QWidget(parent), in_work(false), modbus_mapping(nullptr), modbus(nullptr)
+: QWidget(parent), in_work(false)
 {
   ui.setupUi(this);
 
@@ -27,8 +36,6 @@ DeviceWidget::~DeviceWidget()
   SETTINGS->setValue("port", ui.comboPort->currentText());
   SETTINGS->sync();
   SETTINGS->endGroup();
-
-  modbus_mapping_free(this->modbus_mapping);
 }
 
 void DeviceWidget::load(const QString& ui_file)
@@ -46,17 +53,15 @@ void DeviceWidget::load(const QString& ui_file)
   {
     Json::Value value;
     Json::Reader reader;
-    this->slave_addr = 0;
-    try
-    {
-      if (reader.parse(std::string("{") + this->widget->styleSheet().toUtf8().constData() + "}", value))
-        this->slave_addr = value["addr"].asUInt();
-    }
-    catch (std::runtime_error& e)
-    {
-      LOG_ERROR(e.what());
-    }
-    ui.labelAddress->setText(QString::number(this->slave_addr));
+    
+    if (!reader.parse(std::string("{") + this->widget->styleSheet().toUtf8().constData() + "}", value))
+      MD_THROW("Could not parse widget config file");
+    
+    this->device = std::shared_ptr<Device>(createDevice(value["class"].asString(), value["addr"].asUInt()));
+    if (!this->device->load(value))
+      MD_THROW("Load device failed");
+    
+    ui.labelAddress->setText(this->device->caption());
   }
 
   foreach(QWidget *w, this->widget->findChildren<QWidget*>())
@@ -69,16 +74,11 @@ void DeviceWidget::load(const QString& ui_file)
       if (!reg.loadJSON(std::string("{") + str.toUtf8().constData() + "}"))
         continue;
       reg.setWidget(w);
-      LOG_SUCCESS("func: %d, addr: %d, fmt: %s", reg.function(), reg.address(), reg.format().c_str());
-      this->registers.push_back(reg);
+      w->setToolTip(reg.toString().c_str());
+      LOG_SUCCESS(reg.toString());
+      //this->registers.push_back(reg);
     }
   }
-
-  this->modbus_mapping = modbus_mapping_new(0, 0, 0xFFFF, 0xFFFF);
-  memset(this->modbus_mapping->tab_input_registers, 0, 0xFFFF);
-  memset(this->modbus_mapping->tab_registers, 0, 0xFFFF);
-
-  this->device = std::shared_ptr<Device>(new Device(this, this));
 
   SETTINGS->beginGroup(windowTitle());
   QString port = SETTINGS->value("port").toString();
@@ -101,11 +101,10 @@ void DeviceWidget::pushOpen_clicked()
   {
     LOG_ERROR(e.what());
   }
-  
 }
 
 void DeviceWidget::timerEvent(QTimerEvent *event)
-{
+{/*
   foreach(QWidget *w, this->widget->findChildren<QWidget*>())
   {
     Register* preg = findRegister(w);
@@ -118,96 +117,26 @@ void DeviceWidget::timerEvent(QTimerEvent *event)
         pregs = this->modbus_mapping->tab_input_registers;
       else
         continue;
-      if (auto obj = qobject_cast<QLineEdit*>(w))
-      {
-        pregs[preg->address()] = obj->text().toInt();
-      }
-      else if (auto obj = qobject_cast<QCheckBox*>(w))
-      {
-        pregs[preg->address()] = obj->isChecked() ? 1 : 0;
-      }
+      preg->widgetToValue();
+      pregs[preg->address()] = preg->value.v_u32;
     }
     
-  }
+  }*/
 }
 
-Register* DeviceWidget::findRegister(ushort addr)
-{
-  for (auto &reg : this->registers)
-  {
-    if (reg.address() == addr)
-      return &reg;
-  }
-  return nullptr;
-}
-
-Register* DeviceWidget::findRegister(const QWidget* widget)
-{
-  for (auto &reg : this->registers)
-  {
-    if (reg.widget() == widget)
-      return &reg;
-  }
-  return nullptr;
-}
 
 void DeviceWidget::startPoll()
 {
-  this->modbus = modbus_new_rtu(ui.comboPort->currentText().toLatin1().constData(), 115200, 'N', 8, 1);
-  if (!this->modbus)
-    throw std::runtime_error("modbus_new_rtu failed");
-
-  modbus_set_slave(this->modbus, this->slave_addr);
-
-  timeval tv = { 0, 1000 };
-  modbus_set_response_timeout(this->modbus, &tv);
-  if (modbus_connect(this->modbus) == -1)
-  {
-    modbus_free(this->modbus);
-    ui.pushStart->setText("Start");
-    this->in_work = false;
-    throw std::runtime_error(std::string("Connection failed: ") + modbus_strerror(errno));
-  }
-  else
-  {
-    ui.pushStart->setText("Stop");
-    this->in_work = true;
-  }
+  this->device->switchOn(ui.comboPort->currentText().toLatin1().constData());
+  ui.pushStart->setText("Stop");
+  this->in_work = true;
   ui.comboPort->setEnabled(!this->in_work);
-  this->device->switchOn();
 }
 
 void DeviceWidget::stopPoll()
 {
   this->device->switchOff();
-  modbus_close(this->modbus);
-  modbus_free(this->modbus);
-  this->modbus = nullptr;
   this->in_work = false;
   ui.pushStart->setText("Start");
   ui.comboPort->setEnabled(true);
-}
-
-void DeviceWidget::poll()
-{
-  if (!this->in_work)
-    return;
-  if (modbus_receive(this->modbus, this->query) == -1)
-  {
-    //LOG_ERROR("modbus_receive FAILED");
-    return;
-  }
-  switch (this->query[modbus_get_header_length(this->modbus)])
-  {
-  case MODBUS_READ_INPUT_REGISTERS: {
-    LOG_INFO("MODBUS_READ_INPUT_REGISTERS");
-    modbus_reply(this->modbus, this->query, 0, this->modbus_mapping);
-  } break;
-  case MODBUS_READ_HOLDING_REGISTERS:
-    LOG_INFO("MODBUS_READ_HOLDING_REGISTERS");
-    break;
-  default:
-    LOG_ERROR("UNKNOWN FUNCTION");
-    break;
-  }
 }

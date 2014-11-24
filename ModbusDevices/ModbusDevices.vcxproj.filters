@@ -25,6 +25,9 @@
     <Filter Include="libmodbus">
       <UniqueIdentifier>{96c3d3a6-c92b-4c2d-bd4e-94b6b2b2c878}</UniqueIdentifier>
     </Filter>
+    <Filter Include="widgets">
+      <UniqueIdentifier>{1c92d1fa-c95d-4a67-b565-18280e3d1dcc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_ModbusDevices.cpp">
@@ -36,16 +39,13 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_LoggerWidget.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="LoggerWidget.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ModbusDevices.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_Settings.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_DeviceWidget.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="DeviceWidget.cpp" />
     <ClCompile Include="jsoncpp\json_reader.cpp">
       <Filter>jsoncpp</Filter>
     </ClCompile>
@@ -68,10 +68,21 @@
     <ClCompile Include="libmodbus\modbus-tcp.c">
       <Filter>libmodbus</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_Device.cpp">
+    <ClCompile Include="Device.cpp" />
+    <ClCompile Include="Value.cpp" />
+    <ClCompile Include="DeviceWidget.cpp">
+      <Filter>widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="LoggerWidget.cpp">
+      <Filter>widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="ModbusDevices.cpp">
+      <Filter>widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DeviceModbus.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="Device.cpp" />
+    <ClCompile Include="DeviceModbus.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_ModbusDevices.h">
@@ -132,17 +143,30 @@
     <ClInclude Include="libmodbus\modbus-version.h">
       <Filter>libmodbus</Filter>
     </ClInclude>
+    <ClInclude Include="Value.h" />
+    <ClInclude Include="IncludeMe.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ModbusDevices.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="ModbusDevices.h" />
-    <CustomBuild Include="LoggerWidget.h" />
-    <CustomBuild Include="ModbusDevices.ui" />
     <CustomBuild Include="Settings.hpp" />
-    <CustomBuild Include="DeviceWidget.ui" />
-    <CustomBuild Include="DeviceWidget.h" />
     <CustomBuild Include="Device.h" />
+    <CustomBuild Include="DeviceWidget.h">
+      <Filter>widgets</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DeviceWidget.ui">
+      <Filter>widgets</Filter>
+    </CustomBuild>
+    <CustomBuild Include="LoggerWidget.h">
+      <Filter>widgets</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ModbusDevices.ui">
+      <Filter>widgets</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ModbusDevices.h">
+      <Filter>widgets</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DeviceModbus.h" />
   </ItemGroup>
 </Project>

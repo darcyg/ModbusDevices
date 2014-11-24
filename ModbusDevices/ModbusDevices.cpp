@@ -40,7 +40,7 @@ void ModbusDevices::addDevice(const QString& ui_file)
     widget->load(ui_file);
     ui.tabWidget->addTab(widget, widget->windowTitle());
   }
-  catch (std::exception ex)
+  catch (std::runtime_error& ex)
   {
     delete widget;
     LOG_ERROR("Failed: %s", ex.what());

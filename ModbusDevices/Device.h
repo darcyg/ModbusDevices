@@ -1,30 +1,22 @@
 #ifndef DEVICE_H
 #define DEVICE_H
 
-#include <QThread>
 #include "DeviceWidget.h"
-#include "libmodbus/modbus.h"
+#include "Register.h"
+#include "jsoncpp/json/value.h"
 
-class DeviceWidget;
 
-class Device : public QThread
+class Device
 {
-  Q_OBJECT
-
 public:
-  Device(QObject *parent, DeviceWidget* widget);
-  ~Device();
+  virtual void switchOn(const char* port) = 0;
+  virtual void switchOff() = 0;
+  virtual bool load(const Json::Value& json) = 0;
 
-  void switchOn();
-  void switchOff();
+  //virtual const std::vector<Register>& registers() = 0;
 
-protected:
-  virtual void run();
-
-private:
-  DeviceWidget*     widget;
-  bool              abort;
-  modbus_t*         modbus;
+  virtual const char* caption() { return ""; }
+  
 };
 
 #endif // DEVICE_H

@@ -50,3 +50,4 @@ ModbusDevices/ModbusDevices.vcxproj.user
 *.sdf
 ModbusDevices/config.ini
 ModbusDevices.opensdf
+ModbusDevicesTest/ModbusDevicesTest.vcxproj.user
