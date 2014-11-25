@@ -1,5 +1,6 @@
 #include "Value.h"
 
+
 Value::Value() :v_u32(0), type(TYPE_U32), fractional(0), divisor(1), multiplier(1)
 {
 }
@@ -42,4 +43,23 @@ bool Value::parse(const std::string &sfmt, Value* pval)
     pval->divisor = atoi(&str.c_str()[lpos] + 1);
   
   return true;
+}
+
+
+void Value::valueToWidget(QWidget* w)
+{
+
+}
+
+void Value::widgetToValue(QWidget* w)
+{
+  if (auto obj = qobject_cast<QLineEdit*>(w))
+  {
+    float val = obj->text().toFloat();
+    operator=(obj->text().toFloat());
+  }
+  else if (auto obj = qobject_cast<QCheckBox*>(w))
+  {
+    operator=(obj->isChecked() ? 1 : 0);
+  }
 }

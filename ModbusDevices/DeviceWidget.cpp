@@ -44,11 +44,11 @@ void DeviceWidget::load(const QString& ui_file)
   
   QFile file(ui_file);
   if (!file.open(QFile::ReadOnly))
-    throw std::exception("Can not open file");
-  this->widget.reset(loader.load(&file));
+    MD_THROW("Can not open file");
+  this->widget = loader.load(&file);
   file.close();
   this->setWindowTitle(this->widget->windowTitle());
-  ui.scrollArea->setWidget(this->widget.get());
+  ui.scrollArea->setWidget(this->widget);
   
   {
     Json::Value value;
@@ -57,7 +57,7 @@ void DeviceWidget::load(const QString& ui_file)
     if (!reader.parse(std::string("{") + this->widget->styleSheet().toUtf8().constData() + "}", value))
       MD_THROW("Could not parse widget config file");
     
-    this->device = std::shared_ptr<Device>(createDevice(value["class"].asString(), value["addr"].asUInt()));
+    this->device.reset(createDevice(value["class"].asString(), value["addr"].asUInt()));
     if (!this->device->load(value))
       MD_THROW("Load device failed");
     
@@ -69,14 +69,14 @@ void DeviceWidget::load(const QString& ui_file)
     QString str = w->styleSheet();
     if (str.length())
     {
-      LOG_INFO(QString("Parse reg widget: ") + w->objectName());
-      Register reg;
-      if (!reg.loadJSON(std::string("{") + str.toUtf8().constData() + "}"))
+      Json::Value value;
+      Json::Reader reader;
+      if (!reader.parse(std::string("{") + str.toUtf8().constData() + "}", value))
+      {
+        LOG_ERROR("Parse failed\n%s", value.toStyledString().c_str());
         continue;
-      reg.setWidget(w);
-      w->setToolTip(reg.toString().c_str());
-      LOG_SUCCESS(reg.toString());
-      //this->registers.push_back(reg);
+      }
+      this->device->loadRegister(w, value);
     }
   }
 

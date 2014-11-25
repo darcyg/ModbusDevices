@@ -1,6 +1,6 @@
 #pragma once
 #include "Device.h"
-#include "Register.h"
+#include "RegisterModbus.h"
 #include "libmodbus/modbus.h"
 #include <QThread>
 
@@ -15,19 +15,19 @@ public:
   virtual void switchOn(const char* port);
   virtual void switchOff();
   virtual bool load(const Json::Value& json);
+  virtual bool loadRegister(QWidget* w, const Json::Value& json);
 
   virtual const char* caption() { return (_caption = std::to_string(slave_id)).c_str(); }
 
   //virtual const std::vector<Register>& registers();
 
-  Register* findRegister(ushort addr);
-  Register* findRegister(const QWidget* widget);
+  RegisterModbus* findRegister(ushort addr);
+  RegisterModbus* findRegister(const QWidget* widget);
 
 protected:
   virtual void run();
 
 private:
-  DeviceWidget*     widget;
   bool              abort;
   modbus_t*         modbus;
   modbus_mapping_t* modbus_mapping;
@@ -35,6 +35,6 @@ private:
   int               slave_id;
   std::string       _caption;
 
-  std::vector<Register>     _registers;
+  std::vector<RegisterModbus>     _registers;
 };
 

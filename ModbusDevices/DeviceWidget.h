@@ -4,7 +4,6 @@
 #include <QWidget>
 #include <QtSerialPort/QtSerialPort>
 #include "ui_DeviceWidget.h"
-#include "Register.h"
 #include "Device.h"
 #include <memory>
 #include "libmodbus/modbus.h"
@@ -21,8 +20,6 @@ public:
   void load(const QString& ui_file);
   void stopPoll();
   void startPoll(); 
-  Register* findRegister(ushort addr);
-  Register* findRegister(const QWidget* widget );
   
 public slots:
   void pushOpen_clicked();
@@ -32,7 +29,7 @@ protected:
 
 private:
   Ui::DeviceWidget          ui;
-  std::shared_ptr<QWidget>  widget;
+  QWidget*                  widget;
   std::shared_ptr<Device>   device;
     
   bool                      in_work;

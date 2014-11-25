@@ -59,4 +59,5 @@ struct Value
     divisor = 1;
   }
   static bool parse(const std::string &sfmt, Value* pval);
+
 };

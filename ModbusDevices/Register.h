@@ -3,35 +3,25 @@
 #include <QWidget>
 #include <string>
 #include "Value.h"
+#include "jsoncpp/json/reader.h"
 
 class Register
 {
 public:
-  Register();
+  Register(QWidget *w);
   virtual ~Register();
 
-  bool loadJSON(std::string& jstr);
+  virtual bool setConfig(const Json::Value& json) = 0;
 
-  int function() const { return _function;  }
-  int address() const { return _address; }
   QWidget* widget() const { return _widget; }
   void setWidget(QWidget* w) { _widget = w; }
-  //Value* value() { return &_value; }
-  //void setValue(Value& v) { _value = v; }
-  const std::string& format() const { return _format; }
-
-  std::string toString() const;
   
-  void valueToWidget();
-  void widgetToValue();
-
+  virtual std::string toString() const = 0;
+  
   Value         value;
 
-private:
+protected:
   QWidget*      _widget;
-  int           _function;
-  int           _address;
-  std::string   _format;
-  int           _value;
+  
 };
 

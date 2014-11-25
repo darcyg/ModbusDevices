@@ -12,7 +12,7 @@ ModbusDevices::ModbusDevices(QWidget *parent)
 
   ui.tabWidget->clear();
 
-  addDevice("D:\\_projects\\ModbusDevices\\ModbusDevices\\Example.ui");
+  addDevice("Example.ui");
   
   SETTINGS->beginGroup("MainWindow");
   restoreGeometry(SETTINGS->value("geometry").toByteArray());
@@ -43,7 +43,7 @@ void ModbusDevices::addDevice(const QString& ui_file)
   catch (std::runtime_error& ex)
   {
     delete widget;
-    LOG_ERROR("Failed: %s", ex.what());
+    LOG_ERROR("EXCEPTION: %s", ex.what());
   }
   
 }

@@ -19,6 +19,16 @@ bool DeviceModbus::load(const Json::Value& json)
   return true;
 }
 
+bool DeviceModbus::loadRegister(QWidget* w, const Json::Value& json)
+{
+  RegisterModbus reg(w);
+  if (!reg.setConfig(json))
+    return false;
+  w->setToolTip(reg.toString().c_str());
+  _registers.push_back(reg);
+  return true;
+}
+
 void DeviceModbus::run()
 {
   while (!this->abort)
@@ -34,10 +44,29 @@ void DeviceModbus::run()
       LOG_INFO("MODBUS_READ_INPUT_REGISTERS");
       modbus_reply(this->modbus, this->query, 0, this->modbus_mapping);
       break;
+
     case MODBUS_READ_HOLDING_REGISTERS:
       LOG_INFO("MODBUS_READ_HOLDING_REGISTERS");
       modbus_reply(this->modbus, this->query, 0, this->modbus_mapping);
       break;
+
+    case MODBUS_WRITE_SINGLE_COIL:
+      LOG_INFO("MODBUS_WRITE_SINGLE_COIL");
+      break;
+
+    case MODBUS_WRITE_SINGLE_REGISTER:
+      LOG_INFO("MODBUS_WRITE_SINGLE_REGISTER");
+      modbus_reply(this->modbus, this->query, 0, this->modbus_mapping);
+      break;
+
+    case MODBUS_WRITE_MULTIPLE_COILS:
+      LOG_INFO("MODBUS_WRITE_MULTIPLE_COILS");
+      break;
+
+    case MODBUS_WRITE_MULTIPLE_REGISTERS:
+      LOG_INFO("MODBUS_WRITE_MULTIPLE_REGISTERS");
+      break;
+
     default:
       LOG_ERROR("UNKNOWN FUNCTION");
       break;
@@ -79,7 +108,7 @@ void DeviceModbus::switchOff()
 }
 
 
-Register* DeviceModbus::findRegister(ushort addr)
+RegisterModbus* DeviceModbus::findRegister(ushort addr)
 {
   for (auto &reg : this->_registers)
   {
@@ -89,7 +118,7 @@ Register* DeviceModbus::findRegister(ushort addr)
   return nullptr;
 }
 
-Register* DeviceModbus::findRegister(const QWidget* widget)
+RegisterModbus* DeviceModbus::findRegister(const QWidget* widget)
 {
   for (auto &reg : this->_registers)
   {

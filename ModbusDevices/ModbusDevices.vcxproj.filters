@@ -55,7 +55,6 @@
     <ClCompile Include="jsoncpp\json_writer.cpp">
       <Filter>jsoncpp</Filter>
     </ClCompile>
-    <ClCompile Include="Register.cpp" />
     <ClCompile Include="libmodbus\modbus.c">
       <Filter>libmodbus</Filter>
     </ClCompile>
@@ -83,6 +82,12 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="DeviceModbus.cpp" />
+    <ClCompile Include="RegisterModbus.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Convert.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_ModbusDevices.h">
@@ -145,6 +150,12 @@
     </ClInclude>
     <ClInclude Include="Value.h" />
     <ClInclude Include="IncludeMe.h" />
+    <ClInclude Include="RegisterModbus.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Convert.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ModbusDevices.qrc">

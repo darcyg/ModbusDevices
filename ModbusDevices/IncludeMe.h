@@ -1,3 +1,4 @@
+#pragma once
 #include <exception>
 #include <sstream>
 #include "LoggerWidget.h"
@@ -9,7 +10,7 @@ public:
     std::runtime_error(arg)
   {
       std::ostringstream o;
-      o << file << ":" << line << ": " << arg;
+      o << "[" << file << ": " << line << "] " << arg;
       msg = o.str();
     }
   ~md_exception() throw() {}
@@ -20,3 +21,4 @@ public:
 };
 
 #define MD_THROW(msg, ...) throw md_exception(msg, __FILE__, __LINE__);  
+
