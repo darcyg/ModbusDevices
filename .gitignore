@@ -51,3 +51,4 @@ ModbusDevices/ModbusDevices.vcxproj.user
 ModbusDevices/config.ini
 ModbusDevices.opensdf
 ModbusDevicesTest/ModbusDevicesTest.vcxproj.user
+*.ipch

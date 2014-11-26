@@ -1,5 +1,5 @@
 #include "Value.h"
-
+#include "IncludeMe.h"
 
 Value::Value() :v_u32(0), type(TYPE_U32), fractional(0), divisor(1), multiplier(1)
 {
@@ -45,21 +45,52 @@ bool Value::parse(const std::string &sfmt, Value* pval)
   return true;
 }
 
-
-void Value::valueToWidget(QWidget* w)
+unsigned int Value::toUInt(int fract) const
 {
-
+  switch (type)
+  {
+  case TYPE_S32:
+  case TYPE_U32:
+    return (fract > fractional) ? v_u32 * std::pow(10, (fract - fractional)) : v_u32 / std::pow(10, (fractional - fract));
+  case TYPE_FLOAT:
+    if (fract > fractional)
+      return v_float * std::pow(10, (fract - fractional)) + 0.5;
+    else
+      return v_u32 * std::pow(10, (fractional - fract)) + 0.5;
+  }
+  MD_THROW("Invalid type of Value");
+  return 0;
 }
 
-void Value::widgetToValue(QWidget* w)
+int Value::toInt(int fract) const
 {
-  if (auto obj = qobject_cast<QLineEdit*>(w))
+  switch (type)
   {
-    float val = obj->text().toFloat();
-    operator=(obj->text().toFloat());
+  case TYPE_S32:
+  case TYPE_U32:
+    return (fract > fractional) ? v_u32 * std::pow(10, (fract - fractional)) : v_u32 * std::pow(10, (fractional - fract));
+  case TYPE_FLOAT:
+    if (fract > fractional)
+      return v_float * std::pow(10, (fract - fractional)) + 0.5;
+    else
+      return v_u32 * std::pow(10, (fractional - fract)) + 0.5;
   }
-  else if (auto obj = qobject_cast<QCheckBox*>(w))
-  {
-    operator=(obj->isChecked() ? 1 : 0);
-  }
+  MD_THROW("Invalid type of Value");
+  return 0;
 }
+
+float Value::toFloat() const
+{
+  switch (type)
+  {
+  case TYPE_S32:
+  case TYPE_U32:
+    return v_u32 / std::pow(10, (fractional));
+  case TYPE_FLOAT:
+    return v_float;
+  }
+  MD_THROW("Invalid type of Value");
+  return 0;
+}
+
+

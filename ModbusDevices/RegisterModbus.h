@@ -16,16 +16,21 @@ public:
 
   int function() const { return _function; }
   int address() const { return _address; }
+  int address_hi() const { return _address_hi; }
   const std::string& format() const { return _format; }
-  const Value& value() const { return _value; }
+  //Value& value() { return _value; }
   QWidget* widget() const { return _widget; }
   void setWidget(QWidget* w) { _widget = w; }
 
+  int           bit;
+  Value         value;
+
 private:
-  Value         _value;
   int           _function;
   int           _address;
+  int           _address_hi;
   std::string   _format;
   QWidget*      _widget;
+  
 };
 

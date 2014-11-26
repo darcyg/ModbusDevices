@@ -6,15 +6,18 @@
 
 class ModbusDevices : public QMainWindow
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    ModbusDevices(QWidget *parent = 0);
-    ~ModbusDevices();
-    void addDevice(const QString& ui_file);
+  ModbusDevices(QWidget *parent = 0);
+  ~ModbusDevices();
+  void addDevice(const QString& ui_file);
+
+public slots:
+  void openDevice();
 
 private:
-    Ui::ModbusDevicesClass ui;
+  Ui::ModbusDevicesClass ui;
 };
 
 #endif // MODBUSDEVICES_H

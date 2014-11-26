@@ -58,6 +58,8 @@ void DeviceWidget::load(const QString& ui_file)
       MD_THROW("Could not parse widget config file");
     
     this->device.reset(createDevice(value["class"].asString(), value["addr"].asUInt()));
+    if (!this->device)
+      MD_THROW("Unknown device class");
     if (!this->device->load(value))
       MD_THROW("Load device failed");
     

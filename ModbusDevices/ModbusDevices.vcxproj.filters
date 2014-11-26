@@ -82,12 +82,8 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="DeviceModbus.cpp" />
-    <ClCompile Include="RegisterModbus.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Convert.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
+    <ClCompile Include="Convert.cpp" />
+    <ClCompile Include="RegisterModbus.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_ModbusDevices.h">
@@ -150,12 +146,8 @@
     </ClInclude>
     <ClInclude Include="Value.h" />
     <ClInclude Include="IncludeMe.h" />
-    <ClInclude Include="RegisterModbus.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Convert.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
+    <ClInclude Include="Convert.h" />
+    <ClInclude Include="RegisterModbus.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ModbusDevices.qrc">

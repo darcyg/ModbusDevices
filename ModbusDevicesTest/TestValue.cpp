@@ -49,5 +49,43 @@ namespace ModbusDevicesTest
       Assert::IsTrue(Value::parse("{45.5s45:5*10}", &val));
       Assert::AreEqual(val, Value(Value::TYPE_S32, 5, 10, 5));
 		}
+
+    TEST_METHOD(TestConvert)
+    {
+      Value val, val2;
+      Assert::IsTrue(Value::parse("{.2}", &val));
+      val = 456;
+      Assert::AreEqual(val.v_u32, (unsigned int)45600);
+      val = 1.23;
+      Assert::AreEqual(val.v_u32, (unsigned int)123);
+      val = 4.567;
+      Assert::AreEqual(val.v_u32, (unsigned int)457);
+      
+      Assert::IsTrue(Value::parse("{f}", &val));
+      val = 456;
+      Assert::AreEqual(val.v_float, 456.0f);
+      val = 1.23;
+      Assert::AreEqual(val.v_float, 1.23f);
+      val = 4.567;
+      Assert::AreEqual(val.v_float, 4.567f);
+
+      Assert::IsTrue(Value::parse("{.3}", &val));
+      Assert::IsTrue(Value::parse("{f}", &val2));
+      val2.v_float = 123.456f;
+      val = val2;
+      Assert::AreEqual(val.v_u32, (unsigned int)123456);
+      val.v_u32 = 456789;
+      val2 = val;
+      Assert::AreEqual(val2.v_float, 456.789f);
+
+      Assert::IsTrue(Value::parse("{.3}", &val));
+      Assert::IsTrue(Value::parse("{.1}", &val2));
+      val2.v_u32 = 123;
+      val = val2;
+      Assert::AreEqual(val.v_u32, (unsigned int)12300);
+      val.v_u32 = 456789;
+      val2 = val;
+      Assert::AreEqual(val2.v_u32, (unsigned int)4567);
+    }
 	};
 }

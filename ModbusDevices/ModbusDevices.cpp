@@ -1,6 +1,7 @@
 #include "DeviceWidget.h"
 #include "ModbusDevices.h"
 #include "Settings.hpp"
+#include <QFileDialog>
 
 QSettings *Settings::m_Settings = NULL;
 
@@ -12,7 +13,10 @@ ModbusDevices::ModbusDevices(QWidget *parent)
 
   ui.tabWidget->clear();
 
-  addDevice("Example.ui");
+  connect(ui.actionOpen, SIGNAL(triggered()), this, SLOT(openDevice()));
+
+
+  addDevice("IOBoard_0.ui");
   
   SETTINGS->beginGroup("MainWindow");
   restoreGeometry(SETTINGS->value("geometry").toByteArray());
@@ -46,4 +50,13 @@ void ModbusDevices::addDevice(const QString& ui_file)
     LOG_ERROR("EXCEPTION: %s", ex.what());
   }
   
+}
+
+void ModbusDevices::openDevice()
+{
+  QString fname = QFileDialog::getOpenFileName(this, tr("Open device file"), QDir::currentPath(), "Qt Designer files (*.ui*);;All files (*.*)");
+  if (!fname.isNull())
+  {
+    addDevice(fname);
+  }
 }

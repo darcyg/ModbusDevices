@@ -76,7 +76,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">&quot;addr&quot;:1, &quot;func&quot;:4, &quot;fmt&quot;: &quot;{f}&quot;</string>
+    <string notr="true">&quot;addr&quot;:[1,2], &quot;func&quot;:4, &quot;fmt&quot;: &quot;{f}&quot;</string>
    </property>
    <property name="text">
     <string>0</string>
