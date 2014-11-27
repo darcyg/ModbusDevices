@@ -13,8 +13,6 @@ public:
   virtual bool load(const Json::Value& json) = 0;
   virtual bool loadRegister(QWidget* w, const Json::Value& json) = 0;
 
-  //virtual const std::vector<Register>& registers() = 0;
-
   virtual const char* caption() { return ""; }
   
 };

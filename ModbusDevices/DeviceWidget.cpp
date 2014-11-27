@@ -7,12 +7,15 @@
 #include "Settings.hpp"
 #include "jsoncpp/json/reader.h"
 #include "DeviceModbus.h"
+#include "DeviceTura.h"
 #include "IncludeMe.h"
 
 static Device* createDevice(const std::string& cls, int slave_id)
 {
   if (cls == "DeviceModbus")
     return new DeviceModbus(slave_id);
+  else if (cls == "DeviceTura")
+    return new DeviceTura();
   return nullptr;
 }
 

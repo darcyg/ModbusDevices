@@ -16,7 +16,7 @@ ModbusDevices::ModbusDevices(QWidget *parent)
   connect(ui.actionOpen, SIGNAL(triggered()), this, SLOT(openDevice()));
 
 
-  addDevice("IOBoard_0.ui");
+  addDevice("ui/Tura.ui");
   
   SETTINGS->beginGroup("MainWindow");
   restoreGeometry(SETTINGS->value("geometry").toByteArray());
