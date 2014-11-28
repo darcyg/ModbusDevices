@@ -18,8 +18,9 @@ public:
   DeviceWidget(QWidget *parent=0);
   ~DeviceWidget();
   void load(const QString& ui_file);
-  void stopPoll();
-  void startPoll(); 
+  bool stopPoll();
+  bool startPoll();
+  bool inWork() const { return in_work;  }
   
 public slots:
   void pushOpen_clicked();

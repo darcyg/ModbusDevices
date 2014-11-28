@@ -31,6 +31,9 @@
     <Filter Include="ui">
       <UniqueIdentifier>{a475ce98-c938-4e50-a4aa-a0a9867f3b44}</UniqueIdentifier>
     </Filter>
+    <Filter Include="serial">
+      <UniqueIdentifier>{fb5e54a2-25c0-40d1-b739-24c4c5479be4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_ModbusDevices.cpp">
@@ -88,6 +91,15 @@
     <ClCompile Include="Convert.cpp" />
     <ClCompile Include="RegisterModbus.cpp" />
     <ClCompile Include="DeviceTura.cpp" />
+    <ClCompile Include="Serial\Serial.cpp">
+      <Filter>serial</Filter>
+    </ClCompile>
+    <ClCompile Include="Serial\SerialEx.cpp">
+      <Filter>serial</Filter>
+    </ClCompile>
+    <ClCompile Include="Serial\SerialWnd.cpp">
+      <Filter>serial</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_ModbusDevices.h">
@@ -152,6 +164,15 @@
     <ClInclude Include="Convert.h" />
     <ClInclude Include="RegisterModbus.h" />
     <ClInclude Include="DeviceTura.h" />
+    <ClInclude Include="Serial\Serial.h">
+      <Filter>serial</Filter>
+    </ClInclude>
+    <ClInclude Include="Serial\SerialEx.h">
+      <Filter>serial</Filter>
+    </ClInclude>
+    <ClInclude Include="Serial\SerialWnd.h">
+      <Filter>serial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ModbusDevices.qrc">

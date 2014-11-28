@@ -39,6 +39,8 @@ DeviceWidget::~DeviceWidget()
   SETTINGS->setValue("port", ui.comboPort->currentText());
   SETTINGS->sync();
   SETTINGS->endGroup();
+  if (this->device)
+    this->device->save(windowTitle());
 }
 
 void DeviceWidget::load(const QString& ui_file)
@@ -85,6 +87,8 @@ void DeviceWidget::load(const QString& ui_file)
     }
   }
 
+  this->device->load(windowTitle());
+
   SETTINGS->beginGroup(windowTitle());
   QString port = SETTINGS->value("port").toString();
   SETTINGS->endGroup();
@@ -130,18 +134,20 @@ void DeviceWidget::timerEvent(QTimerEvent *event)
 }
 
 
-void DeviceWidget::startPoll()
+bool DeviceWidget::startPoll()
 {
   this->device->switchOn(ui.comboPort->currentText().toLatin1().constData());
   ui.pushStart->setText("Stop");
   this->in_work = true;
   ui.comboPort->setEnabled(!this->in_work);
+  return true;
 }
 
-void DeviceWidget::stopPoll()
+bool DeviceWidget::stopPoll()
 {
   this->device->switchOff();
   this->in_work = false;
   ui.pushStart->setText("Start");
   ui.comboPort->setEnabled(true);
+  return true;
 }

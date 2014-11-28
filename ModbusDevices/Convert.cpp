@@ -20,7 +20,7 @@ void widgetToValue(QWidget* w, Value &v)
 {
   if (auto obj = qobject_cast<QLineEdit*>(w))
   {
-    v =obj->text().toFloat();
+    v = obj->text().toFloat();
   }
   else if (auto obj = qobject_cast<QCheckBox*>(w))
   {

@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">&quot;class&quot;: &quot;DeviceTura&quot;</string>
+  </property>
  </widget>
  <resources/>
  <connections/>

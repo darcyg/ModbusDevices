@@ -11,7 +11,7 @@ struct Value
   };
 
   Value();
-  Value(Type t, int f, int m = 1, int d = 1);
+  Value(Type t, int f = 0, int m = 1, int d = 1);
 
   unsigned int toUInt(int fract = 0) const;
   int toInt(int fract = 0) const;

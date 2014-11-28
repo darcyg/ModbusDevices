@@ -43,8 +43,8 @@ void LoggerWidget::print(Level level, const std::string& msg)
 
 void LoggerWidget::print_base(Level level, const QString& msg)
 {
-  
-  //emit LoggerWidget::instance->append(msg);
+  if (!instance)
+    return;
   emit LoggerWidget::instance->print_signal(level, msg);
 }
 
@@ -58,10 +58,13 @@ LoggerWidget::LoggerWidget(QWidget *parent) : QTextEdit(parent)
 
 LoggerWidget::~LoggerWidget()
 {
+  instance = nullptr;
 }
 
 void LoggerWidget::print_slot(int level, QString msg)
 {
+  if (!instance)
+    return;
   switch (level)
   {
   case Error:

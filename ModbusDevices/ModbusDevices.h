@@ -12,9 +12,12 @@ public:
   ModbusDevices(QWidget *parent = 0);
   ~ModbusDevices();
   void addDevice(const QString& ui_file);
+  void removeDeviceTab(int idx);
 
 public slots:
   void openDevice();
+  void closeDevice();
+  void closeTab(int tab);
 
 private:
   Ui::ModbusDevicesClass ui;

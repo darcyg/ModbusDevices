@@ -1,6 +1,7 @@
 #include "DeviceWidget.h"
 #include "ModbusDevices.h"
 #include "Settings.hpp"
+#include <QMessageBox>
 #include <QFileDialog>
 
 QSettings *Settings::m_Settings = NULL;
@@ -14,7 +15,8 @@ ModbusDevices::ModbusDevices(QWidget *parent)
   ui.tabWidget->clear();
 
   connect(ui.actionOpen, SIGNAL(triggered()), this, SLOT(openDevice()));
-
+  connect(ui.actionClose, SIGNAL(triggered()), this, SLOT(closeDevice()));
+  connect(ui.tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
 
   addDevice("ui/Tura.ui");
   
@@ -52,6 +54,31 @@ void ModbusDevices::addDevice(const QString& ui_file)
   
 }
 
+void ModbusDevices::removeDeviceTab(int idx)
+{
+  DeviceWidget* w = qobject_cast<DeviceWidget*>(ui.tabWidget->widget(idx));
+  if (w)
+  {
+    LOG_INFO("Remove widget %s", w->windowTitle().toLatin1().constData());
+    if (w->inWork())
+    {
+      QMessageBox msgBox;
+      msgBox.setIcon(QMessageBox::Warning);
+      msgBox.setText("<b>Device is working now!</b>");
+      msgBox.setInformativeText("Do you want to stop it anyway?");
+      msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+      msgBox.setDefaultButton(QMessageBox::Ok);
+      if (msgBox.exec() == QMessageBox::Cancel)
+      {
+        LOG_INFO("Canceled");
+        return;
+      }
+    }
+    if(w->stopPoll())
+      ui.tabWidget->removeTab(idx);
+  }
+}
+
 void ModbusDevices::openDevice()
 {
   QString fname = QFileDialog::getOpenFileName(this, tr("Open device file"), QDir::currentPath(), "Qt Designer files (*.ui*);;All files (*.*)");
@@ -59,4 +86,14 @@ void ModbusDevices::openDevice()
   {
     addDevice(fname);
   }
+}
+
+void ModbusDevices::closeDevice()
+{
+  removeDeviceTab(ui.tabWidget->currentIndex());
+}
+
+void ModbusDevices::closeTab(int tab)
+{
+  removeDeviceTab(tab);
 }
