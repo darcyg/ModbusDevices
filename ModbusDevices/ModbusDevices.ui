@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Device Emulator</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">qdarkstyle.qss</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">

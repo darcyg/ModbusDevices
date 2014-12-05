@@ -20,7 +20,8 @@ public slots:
   void closeTab(int tab);
 
 private:
-  Ui::ModbusDevicesClass ui;
+  Ui::ModbusDevicesClass  ui;
+  QStringList   _opened_files;
 };
 
 #endif // MODBUSDEVICES_H

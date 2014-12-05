@@ -22,3 +22,31 @@ public:
 
 #define MD_THROW(msg, ...) throw md_exception(msg, __FILE__, __LINE__);  
 
+/************************************************************************/
+/* Singleton class                                                      */
+/************************************************************************/
+template <class T>
+class Singleton
+{
+  static T* _self;
+protected:
+  Singleton(){}
+  virtual ~Singleton() { _self = nullptr; }
+public:
+  static T* Instance();
+  void freeInstance();
+};
+
+template <class T>
+T* Singleton<T>::_self = nullptr;
+
+template <class T>
+T* Singleton<T>::Instance() {
+  return _self ? _self : _self = new T;
+}
+
+template <class T>
+void  Singleton<T>::freeInstance() {
+  delete this;
+  _self = nullptr;
+}

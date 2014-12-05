@@ -6,7 +6,6 @@
 #include "ui_DeviceWidget.h"
 #include "Device.h"
 #include <memory>
-#include "libmodbus/modbus.h"
 
 class Device;
 
@@ -22,11 +21,15 @@ public:
   bool startPoll();
   bool inWork() const { return in_work;  }
   
+signals:
+  void started();
+  void stopped();
+
 public slots:
   void pushOpen_clicked();
   
 protected:
-  virtual void timerEvent(QTimerEvent *event);
+  void timerEvent(QTimerEvent * e);
 
 private:
   Ui::DeviceWidget          ui;

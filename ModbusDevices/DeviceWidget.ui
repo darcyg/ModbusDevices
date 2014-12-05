@@ -27,6 +27,28 @@
        <widget class="QComboBox" name="comboPort"/>
       </item>
       <item>
+       <widget class="QComboBox" name="comboBaudrate">
+        <property name="currentIndex">
+         <number>2</number>
+        </property>
+        <item>
+         <property name="text">
+          <string>9600</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>19200</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>115200</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="pushStart">
         <property name="text">
          <string>Start</string>

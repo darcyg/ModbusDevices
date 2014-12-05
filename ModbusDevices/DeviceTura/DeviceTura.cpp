@@ -15,7 +15,7 @@ DeviceTura::~DeviceTura()
   switchOff();
 }
 
-void DeviceTura::switchOn(const char* port)
+void DeviceTura::switchOn(const char* port, int baudrate)
 {
   if (this->isRunning())
     return;
@@ -227,7 +227,7 @@ void DeviceTura::run()
 
   _cserial = new CSerial();
   _cserial->Setup((CSerial::EBaudrate)115200, CSerial::EData8, CSerial::EParNone, CSerial::EStop1);
-  LONG lLastError = _cserial->Open(_portName.toLatin1().constData(), 4096, 4096, true);
+  LONG lLastError = _cserial->Open((LPCTSTR)_portName.toLatin1().constData(), 4096, 4096, true);
   if (lLastError != ERROR_SUCCESS)
   {
     LOG_ERROR("Open port failed: %d", lLastError);
@@ -270,7 +270,7 @@ void DeviceTura::updateDisplaInfo()
   _info_widget->setText(str);
 }
 
-void DeviceTura::save(QString &key)
+void DeviceTura::saveState(QString &key)
 {
   for (auto &v : _current_fr)
     widgetToValue(v.widget, v.value);
@@ -287,7 +287,7 @@ void DeviceTura::save(QString &key)
   SETTINGS->endGroup();
 }
 
-void DeviceTura::load(QString &key)
+void DeviceTura::loadState(QString &key)
 {
   SETTINGS->beginGroup(key);
   _current_fr[0].value.v_float = SETTINGS->value("fr0").toFloat();

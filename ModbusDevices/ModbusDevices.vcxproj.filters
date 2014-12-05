@@ -34,13 +34,16 @@
     <Filter Include="serial">
       <UniqueIdentifier>{fb5e54a2-25c0-40d1-b739-24c4c5479be4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DeviceModbus">
+      <UniqueIdentifier>{77daaa5a-4d15-4c1e-ae81-4e537cebb94f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DeviceTura">
+      <UniqueIdentifier>{1e7af75d-6c91-4605-ae4b-fa42628873fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_ModbusDevices.cpp">
       <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\qrc_ModbusDevices.cpp">
-      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_LoggerWidget.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -61,19 +64,6 @@
     <ClCompile Include="jsoncpp\json_writer.cpp">
       <Filter>jsoncpp</Filter>
     </ClCompile>
-    <ClCompile Include="libmodbus\modbus.c">
-      <Filter>libmodbus</Filter>
-    </ClCompile>
-    <ClCompile Include="libmodbus\modbus-data.c">
-      <Filter>libmodbus</Filter>
-    </ClCompile>
-    <ClCompile Include="libmodbus\modbus-rtu.c">
-      <Filter>libmodbus</Filter>
-    </ClCompile>
-    <ClCompile Include="libmodbus\modbus-tcp.c">
-      <Filter>libmodbus</Filter>
-    </ClCompile>
-    <ClCompile Include="Device.cpp" />
     <ClCompile Include="Value.cpp" />
     <ClCompile Include="DeviceWidget.cpp">
       <Filter>widgets</Filter>
@@ -84,13 +74,7 @@
     <ClCompile Include="ModbusDevices.cpp">
       <Filter>widgets</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_DeviceModbus.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="DeviceModbus.cpp" />
     <ClCompile Include="Convert.cpp" />
-    <ClCompile Include="RegisterModbus.cpp" />
-    <ClCompile Include="DeviceTura.cpp" />
     <ClCompile Include="Serial\Serial.cpp">
       <Filter>serial</Filter>
     </ClCompile>
@@ -99,6 +83,36 @@
     </ClCompile>
     <ClCompile Include="Serial\SerialWnd.cpp">
       <Filter>serial</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_ModbusDevices.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceModbus\libmodbus\modbus.c">
+      <Filter>libmodbus</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceModbus\libmodbus\modbus-data.c">
+      <Filter>libmodbus</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceModbus\libmodbus\modbus-rtu.c">
+      <Filter>libmodbus</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceModbus\libmodbus\modbus-tcp.c">
+      <Filter>libmodbus</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceModbus\DeviceModbus.cpp">
+      <Filter>DeviceModbus</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceModbus\RegisterModbus.cpp">
+      <Filter>DeviceModbus</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceTura\DeviceTura.cpp">
+      <Filter>DeviceTura</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceModbus\ModbusControl.cpp">
+      <Filter>DeviceModbus</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ModbusControl.cpp">
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -135,35 +149,9 @@
     <ClInclude Include="jsoncpp\json\writer.h">
       <Filter>jsoncpp\json</Filter>
     </ClInclude>
-    <ClInclude Include="libmodbus\config.h">
-      <Filter>libmodbus</Filter>
-    </ClInclude>
-    <ClInclude Include="libmodbus\modbus.h">
-      <Filter>libmodbus</Filter>
-    </ClInclude>
-    <ClInclude Include="libmodbus\modbus-private.h">
-      <Filter>libmodbus</Filter>
-    </ClInclude>
-    <ClInclude Include="libmodbus\modbus-rtu.h">
-      <Filter>libmodbus</Filter>
-    </ClInclude>
-    <ClInclude Include="libmodbus\modbus-rtu-private.h">
-      <Filter>libmodbus</Filter>
-    </ClInclude>
-    <ClInclude Include="libmodbus\modbus-tcp.h">
-      <Filter>libmodbus</Filter>
-    </ClInclude>
-    <ClInclude Include="libmodbus\modbus-tcp-private.h">
-      <Filter>libmodbus</Filter>
-    </ClInclude>
-    <ClInclude Include="libmodbus\modbus-version.h">
-      <Filter>libmodbus</Filter>
-    </ClInclude>
     <ClInclude Include="Value.h" />
     <ClInclude Include="IncludeMe.h" />
     <ClInclude Include="Convert.h" />
-    <ClInclude Include="RegisterModbus.h" />
-    <ClInclude Include="DeviceTura.h" />
     <ClInclude Include="Serial\Serial.h">
       <Filter>serial</Filter>
     </ClInclude>
@@ -173,13 +161,40 @@
     <ClInclude Include="Serial\SerialWnd.h">
       <Filter>serial</Filter>
     </ClInclude>
+    <ClInclude Include="DeviceModbus\libmodbus\config.h">
+      <Filter>libmodbus</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceModbus\libmodbus\modbus.h">
+      <Filter>libmodbus</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceModbus\libmodbus\modbus-private.h">
+      <Filter>libmodbus</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceModbus\libmodbus\modbus-rtu.h">
+      <Filter>libmodbus</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceModbus\libmodbus\modbus-rtu-private.h">
+      <Filter>libmodbus</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceModbus\libmodbus\modbus-tcp.h">
+      <Filter>libmodbus</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceModbus\libmodbus\modbus-tcp-private.h">
+      <Filter>libmodbus</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceModbus\libmodbus\modbus-version.h">
+      <Filter>libmodbus</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceModbus\RegisterModbus.h">
+      <Filter>DeviceModbus</Filter>
+    </ClInclude>
+    <ClInclude Include="Device.h" />
+    <ClInclude Include="DeviceTura\DeviceTura.h">
+      <Filter>DeviceTura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="ModbusDevices.qrc">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="Settings.hpp" />
-    <CustomBuild Include="Device.h" />
     <CustomBuild Include="DeviceWidget.h">
       <Filter>widgets</Filter>
     </CustomBuild>
@@ -195,7 +210,6 @@
     <CustomBuild Include="ModbusDevices.h">
       <Filter>widgets</Filter>
     </CustomBuild>
-    <CustomBuild Include="DeviceModbus.h" />
     <CustomBuild Include="ui\Example.ui">
       <Filter>ui</Filter>
     </CustomBuild>
@@ -206,6 +220,21 @@
       <Filter>ui</Filter>
     </CustomBuild>
     <CustomBuild Include="ui\Tura.ui">
+      <Filter>ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="rsc\ModbusDevices.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DeviceModbus\DeviceModbus.h">
+      <Filter>DeviceModbus</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DeviceModbus\ModbusControl.h">
+      <Filter>DeviceModbus</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\IOBoard_1.ui">
+      <Filter>ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\IOBoard_2.ui">
       <Filter>ui</Filter>
     </CustomBuild>
   </ItemGroup>

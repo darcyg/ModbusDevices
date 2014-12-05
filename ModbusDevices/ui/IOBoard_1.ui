@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>538</width>
+    <height>380</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>380</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>IO Board 1</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">&quot;addr&quot; : 2, &quot;class&quot;: &quot;DeviceModbus&quot;</string>
+  </property>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>10</y>
+     <width>121</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Дискретные Входы</string>
+   </property>
+   <widget class="QCheckBox" name="checkPin_0">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>20</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 2, &quot;addr&quot;: 0</string>
+    </property>
+    <property name="text">
+     <string>Pin 0</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_1">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 2, &quot;addr&quot;: 1</string>
+    </property>
+    <property name="text">
+     <string>Pin 1</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>60</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 2, &quot;addr&quot;: 2</string>
+    </property>
+    <property name="text">
+     <string>Pin 2</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_3">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>80</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 2, &quot;addr&quot;: 3</string>
+    </property>
+    <property name="text">
+     <string>Pin 3</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_4">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>100</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 2, &quot;addr&quot;: 4</string>
+    </property>
+    <property name="text">
+     <string>Pin 4</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_5">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>120</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 2, &quot;addr&quot;: 5</string>
+    </property>
+    <property name="text">
+     <string>Pin 5</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_6">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 2, &quot;addr&quot;: 6</string>
+    </property>
+    <property name="text">
+     <string>Pin 6</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_7">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>160</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 2, &quot;addr&quot;: 7</string>
+    </property>
+    <property name="text">
+     <string>Pin 7</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_8">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>180</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 2, &quot;addr&quot;: 8</string>
+    </property>
+    <property name="text">
+     <string>Pin 8</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_9">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>200</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 2, &quot;addr&quot;: 9</string>
+    </property>
+    <property name="text">
+     <string>Pin 9</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_10">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>220</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 2, &quot;addr&quot;: 10</string>
+    </property>
+    <property name="text">
+     <string>Pin 10</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_11">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>240</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 2, &quot;addr&quot;: 11</string>
+    </property>
+    <property name="text">
+     <string>Pin 11</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_12">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>260</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 2, &quot;addr&quot;: 12</string>
+    </property>
+    <property name="text">
+     <string>Pin 12</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_13">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>280</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 2, &quot;addr&quot;: 13</string>
+    </property>
+    <property name="text">
+     <string>Pin 13</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_14">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>300</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 2, &quot;addr&quot;: 14</string>
+    </property>
+    <property name="text">
+     <string>Pin 14</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_15">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>320</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 2, &quot;addr&quot;: 15</string>
+    </property>
+    <property name="text">
+     <string>Pin 15</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>10</y>
+     <width>121</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Аналоговый вход 0</string>
+   </property>
+   <widget class="QLineEdit" name="listAnalogInput_0">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;:4, &quot;addr&quot;: 0</string>
+    </property>
+    <property name="maxLength">
+     <number>4</number>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>70</y>
+     <width>121</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Аналоговый вход 1</string>
+   </property>
+   <widget class="QLineEdit" name="listAnalogInput_1">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;:4, &quot;addr&quot;: 1</string>
+    </property>
+    <property name="maxLength">
+     <number>4</number>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_4">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>130</y>
+     <width>121</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Аналоговый вход 2</string>
+   </property>
+   <widget class="QLineEdit" name="listAnalogInput_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;:4, &quot;addr&quot;: 2</string>
+    </property>
+    <property name="maxLength">
+     <number>4</number>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_5">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>10</y>
+     <width>201</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Дискретные Выходы</string>
+   </property>
+   <widget class="QCheckBox" name="checkPinO_0">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>20</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;reg&quot;: [ {&quot;func&quot;: 5, &quot;addr&quot;: 0}, {&quot;func&quot;: 4, &quot;addr&quot;: 5, &quot;bit&quot;: 0} ]</string>
+    </property>
+    <property name="text">
+     <string>Pin 0</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_17">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;reg&quot;: [ {&quot;func&quot;: 5, &quot;addr&quot;: 1}, {&quot;func&quot;: 4, &quot;addr&quot;: 5, &quot;bit&quot;: 1} ]</string>
+    </property>
+    <property name="text">
+     <string>Pin 1</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_18">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>60</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 2</string>
+    </property>
+    <property name="text">
+     <string>Pin 2</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_19">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>80</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 3</string>
+    </property>
+    <property name="text">
+     <string>Pin 3</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_20">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>100</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 4</string>
+    </property>
+    <property name="text">
+     <string>Pin 4</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_21">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>120</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 5</string>
+    </property>
+    <property name="text">
+     <string>Pin 5</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_22">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 6</string>
+    </property>
+    <property name="text">
+     <string>Pin 6</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_23">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>160</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 7</string>
+    </property>
+    <property name="text">
+     <string>Pin 7</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_24">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>180</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 8</string>
+    </property>
+    <property name="text">
+     <string>Pin 8</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_25">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>200</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 9</string>
+    </property>
+    <property name="text">
+     <string>Pin 9</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_26">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>220</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 10</string>
+    </property>
+    <property name="text">
+     <string>Pin 10</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_27">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>240</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 11</string>
+    </property>
+    <property name="text">
+     <string>Pin 11</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_28">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>260</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 12</string>
+    </property>
+    <property name="text">
+     <string>Pin 12</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_29">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>280</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 13</string>
+    </property>
+    <property name="text">
+     <string>Pin 13</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_30">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>300</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 14</string>
+    </property>
+    <property name="text">
+     <string>Pin 14</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_31">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>320</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 15</string>
+    </property>
+    <property name="text">
+     <string>Pin 15</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_40">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>200</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 25</string>
+    </property>
+    <property name="text">
+     <string>Pin 25</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_41">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>220</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 26</string>
+    </property>
+    <property name="text">
+     <string>Pin 26</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_42">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>240</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 27</string>
+    </property>
+    <property name="text">
+     <string>Pin 27</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_38">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>160</y>
+      <width>61</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 23</string>
+    </property>
+    <property name="text">
+     <string>Pin 23</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_32">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>20</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 16</string>
+    </property>
+    <property name="text">
+     <string>Pin 16</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPinO_1">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>140</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 22</string>
+    </property>
+    <property name="text">
+     <string>Pin 22</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_35">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>80</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 19</string>
+    </property>
+    <property name="text">
+     <string>Pin 19</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_36">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>100</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 20</string>
+    </property>
+    <property name="text">
+     <string>Pin 20</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_33">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>40</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 17</string>
+    </property>
+    <property name="text">
+     <string>Pin 17</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_39">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>180</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 24</string>
+    </property>
+    <property name="text">
+     <string>Pin 24</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_37">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>120</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 21</string>
+    </property>
+    <property name="text">
+     <string>Pin 21</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkPin_34">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>60</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 18</string>
+    </property>
+    <property name="text">
+     <string>Pin 18</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

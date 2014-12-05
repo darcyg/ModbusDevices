@@ -22,12 +22,12 @@ public:
   DeviceTura();
   virtual ~DeviceTura();
 
-  virtual void switchOn(const char* port);
+  virtual void switchOn(const char* port, int baudrate);
   virtual void switchOff();
   virtual bool load(const Json::Value& json);
   virtual bool loadRegister(QWidget* w, const Json::Value& json);
-  virtual void save(QString &key);
-  virtual void load(QString &key);
+  virtual void saveState(QString &key);
+  virtual void loadState(QString &key);
 
   virtual const char* caption() { return "Tura"; }
 

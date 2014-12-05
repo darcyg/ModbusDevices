@@ -18,13 +18,16 @@ ModbusDevices::ModbusDevices(QWidget *parent)
   connect(ui.actionClose, SIGNAL(triggered()), this, SLOT(closeDevice()));
   connect(ui.tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
 
-  addDevice("ui/Tura.ui");
-  
   SETTINGS->beginGroup("MainWindow");
   restoreGeometry(SETTINGS->value("geometry").toByteArray());
   restoreState(SETTINGS->value("state").toByteArray());
+  auto files = SETTINGS->value("open_list").toStringList();
   ui.splitter->restoreState(SETTINGS->value("splitter").toByteArray());
   SETTINGS->endGroup();
+  for each (auto f in files)
+  {
+    addDevice(f);
+  }
 }
 
 ModbusDevices::~ModbusDevices()
@@ -33,6 +36,7 @@ ModbusDevices::~ModbusDevices()
   SETTINGS->setValue("geometry", saveGeometry());
   SETTINGS->setValue("state", saveState());
   SETTINGS->setValue("splitter", ui.splitter->saveState());
+  SETTINGS->setValue("open_list", _opened_files);
   SETTINGS->sync();
   SETTINGS->endGroup();
 }
@@ -44,7 +48,11 @@ void ModbusDevices::addDevice(const QString& ui_file)
   try
   {
     widget->load(ui_file);
-    ui.tabWidget->addTab(widget, widget->windowTitle());
+    auto idx = ui.tabWidget->addTab(widget, widget->windowTitle());
+    ui.tabWidget->setCurrentIndex(idx);
+    _opened_files.append(ui_file);
+    connect(widget, SIGNAL(started()), this, SLOT(closeTab(int)));
+    //ui.tabWidget->tabBar()->setTabTextColor(idx, "red");
   }
   catch (std::runtime_error& ex)
   {
@@ -74,8 +82,12 @@ void ModbusDevices::removeDeviceTab(int idx)
         return;
       }
     }
-    if(w->stopPoll())
+    if (w->stopPoll())
+    {
       ui.tabWidget->removeTab(idx);
+      _opened_files.removeAt(idx);
+    }
+      
   }
 }
 

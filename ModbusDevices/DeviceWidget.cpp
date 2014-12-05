@@ -6,8 +6,8 @@
 #include <QtSerialPort/QSerialPortInfo>
 #include "Settings.hpp"
 #include "jsoncpp/json/reader.h"
-#include "DeviceModbus.h"
-#include "DeviceTura.h"
+#include "DeviceModbus/DeviceModbus.h"
+#include "DeviceTura/DeviceTura.h"
 #include "IncludeMe.h"
 
 static Device* createDevice(const std::string& cls, int slave_id)
@@ -30,7 +30,7 @@ DeviceWidget::DeviceWidget(QWidget *parent)
   {
     ui.comboPort->insertItem(0, info.portName());
   }
-  this->startTimer(200);
+  
 }
 
 DeviceWidget::~DeviceWidget()
@@ -40,7 +40,7 @@ DeviceWidget::~DeviceWidget()
   SETTINGS->sync();
   SETTINGS->endGroup();
   if (this->device)
-    this->device->save(windowTitle());
+    this->device->saveState(windowTitle());
 }
 
 void DeviceWidget::load(const QString& ui_file)
@@ -87,8 +87,9 @@ void DeviceWidget::load(const QString& ui_file)
     }
   }
 
-  this->device->load(windowTitle());
+  this->device->loadState(windowTitle());
 
+  auto a = windowTitle();
   SETTINGS->beginGroup(windowTitle());
   QString port = SETTINGS->value("port").toString();
   SETTINGS->endGroup();
@@ -106,40 +107,21 @@ void DeviceWidget::pushOpen_clicked()
     else
       startPoll();
   }
-  catch (std::runtime_error& e)
+  catch (md_exception& e)
   {
     LOG_ERROR(e.what());
   }
 }
 
-void DeviceWidget::timerEvent(QTimerEvent *event)
-{/*
-  foreach(QWidget *w, this->widget->findChildren<QWidget*>())
-  {
-    Register* preg = findRegister(w);
-    if (preg)
-    {
-      uint16_t* pregs = nullptr;
-      if (preg->function() == MODBUS_READ_HOLDING_REGISTERS)
-        pregs = this->modbus_mapping->tab_registers;
-      else if (preg->function() == MODBUS_READ_INPUT_REGISTERS)
-        pregs = this->modbus_mapping->tab_input_registers;
-      else
-        continue;
-      preg->widgetToValue();
-      pregs[preg->address()] = preg->value.v_u32;
-    }
-    
-  }*/
-}
-
-
 bool DeviceWidget::startPoll()
 {
-  this->device->switchOn(ui.comboPort->currentText().toLatin1().constData());
+  QString port("\\\\.\\");
+  port.append(ui.comboPort->currentText());
+  this->device->switchOn(port.toLatin1().constData(), ui.comboBaudrate->currentText().toInt());
   ui.pushStart->setText("Stop");
   this->in_work = true;
   ui.comboPort->setEnabled(!this->in_work);
+  ui.comboBaudrate->setEnabled(!this->in_work);
   return true;
 }
 
@@ -149,5 +131,11 @@ bool DeviceWidget::stopPoll()
   this->in_work = false;
   ui.pushStart->setText("Start");
   ui.comboPort->setEnabled(true);
+  ui.comboBaudrate->setEnabled(true);
   return true;
+}
+
+void DeviceWidget::timerEvent(QTimerEvent * e)
+{
+
 }
