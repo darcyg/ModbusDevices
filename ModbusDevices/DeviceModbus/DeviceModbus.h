@@ -3,6 +3,7 @@
 #include "IncludeMe.h"
 #include "RegisterModbus.h"
 #include "ModbusControl.h"
+#include "IOBoard.h"
 #include <QThread>
 
 class DeviceModbus : public Device
@@ -15,7 +16,7 @@ public:
 
   virtual void switchOn(const char* port, int baudrate);
   virtual void switchOff();
-  virtual bool load(const Json::Value& json);
+  virtual bool load(const Json::Value& json, const QString& fname);
   virtual bool loadRegister(QWidget* w, const Json::Value& json);
 
   virtual const char* caption() { return (_caption = std::to_string(slave_id)).c_str(); }
@@ -30,6 +31,8 @@ public:
   void updateValues();
   void updateWidgets();
 
+  IOBoard* board() { return _board;  }
+
 protected:
 
 
@@ -40,5 +43,6 @@ private:
   std::string       _caption;
 
   std::vector<RegisterModbus>     _registers;
+  IOBoard*          _board;
 };
 

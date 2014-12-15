@@ -1,11 +1,13 @@
 #include "DeviceModbus.h"
 #include "Convert.h"
 #include "ModbusControl.h"
-
+#include "Python/PythonCore.h"
+#include <QFileInfo>
 
 DeviceModbus::DeviceModbus(int sid) : slave_id(sid), abort(false), _modbus_mapping(nullptr)
 {
   _modbus_mapping = modbus_mapping_new(0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF);
+  _board = new IOBoard();
 }
 
 
@@ -15,8 +17,23 @@ DeviceModbus::~DeviceModbus()
   modbus_mapping_free(_modbus_mapping);
 }
 
-bool DeviceModbus::load(const Json::Value& json)
+bool DeviceModbus::load(const Json::Value& json, const QString& fname)
 {
+  auto value = json["script"];
+  if (value.type() == Json::stringValue)
+  {
+    try
+    {
+      QFileInfo fi(fname);
+      auto str = fi.absolutePath() + "/" + value.asCString();
+      PYTHONCORE->runFile(str.toUtf8().constData(), json.toStyledString().c_str());
+    }
+    catch (md_exception& e)
+    {
+      LOG_ERROR("Running script failed (%s): %s", value.asCString(), e.what());
+      return false;
+    }
+  }
   return true;
 }
 

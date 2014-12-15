@@ -40,6 +40,9 @@
     <Filter Include="DeviceTura">
       <UniqueIdentifier>{1e7af75d-6c91-4605-ae4b-fa42628873fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="python">
+      <UniqueIdentifier>{81a77138-adeb-4ff7-964f-61278dd590fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_ModbusDevices.cpp">
@@ -113,6 +116,12 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_ModbusControl.cpp">
       <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceModbus\IOBoard.cpp">
+      <Filter>DeviceModbus</Filter>
+    </ClCompile>
+    <ClCompile Include="Python\PythonCore.cpp">
+      <Filter>python</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +201,12 @@
     <ClInclude Include="DeviceTura\DeviceTura.h">
       <Filter>DeviceTura</Filter>
     </ClInclude>
+    <ClInclude Include="DeviceModbus\IOBoard.h">
+      <Filter>DeviceModbus</Filter>
+    </ClInclude>
+    <ClInclude Include="Python\PythonCore.h">
+      <Filter>python</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Settings.hpp" />
@@ -237,5 +252,11 @@
     <CustomBuild Include="ui\IOBoard_2.ui">
       <Filter>ui</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ExampleScript.py" />
+    <None Include="ui\IOBoard_0.py">
+      <Filter>ui</Filter>
+    </None>
   </ItemGroup>
 </Project>

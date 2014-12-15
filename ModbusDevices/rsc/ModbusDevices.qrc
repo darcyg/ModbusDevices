@@ -1,8 +1,7 @@
 <RCC>
     <qresource prefix="ModbusDevices">
-      <file>qdarkstyle.qss</file>
     </qresource>
   <qresource prefix="rc">
-    <file>rc/branch_closed.png</file>
+
   </qresource>
 </RCC>

@@ -409,7 +409,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">&quot;reg&quot;: [ {&quot;func&quot;: 5, &quot;addr&quot;: 0}, {&quot;func&quot;: 4, &quot;addr&quot;: 5, &quot;bit&quot;: 0} ]</string>
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 0</string>
     </property>
     <property name="text">
      <string>Pin 0</string>
@@ -428,7 +428,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">&quot;reg&quot;: [ {&quot;func&quot;: 5, &quot;addr&quot;: 1}, {&quot;func&quot;: 4, &quot;addr&quot;: 5, &quot;bit&quot;: 1} ]</string>
+     <string notr="true">&quot;func&quot;: 5, &quot;addr&quot;: 1</string>
     </property>
     <property name="text">
      <string>Pin 1</string>

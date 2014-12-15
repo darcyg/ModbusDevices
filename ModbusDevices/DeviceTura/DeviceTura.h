@@ -24,7 +24,7 @@ public:
 
   virtual void switchOn(const char* port, int baudrate);
   virtual void switchOff();
-  virtual bool load(const Json::Value& json);
+  virtual bool load(const Json::Value& json, const QString& fname);
   virtual bool loadRegister(QWidget* w, const Json::Value& json);
   virtual void saveState(QString &key);
   virtual void loadState(QString &key);

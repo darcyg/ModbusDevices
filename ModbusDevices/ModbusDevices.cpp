@@ -3,6 +3,7 @@
 #include "Settings.hpp"
 #include <QMessageBox>
 #include <QFileDialog>
+#include "Python/PythonCore.h"
 
 QSettings *Settings::m_Settings = NULL;
 
@@ -18,6 +19,18 @@ ModbusDevices::ModbusDevices(QWidget *parent)
   connect(ui.actionClose, SIGNAL(triggered()), this, SLOT(closeDevice()));
   connect(ui.tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
 
+  try
+  {
+    PythonCore::Instance()->setParent(this);
+    PythonCore::Instance()->initPython();
+  }
+  catch (md_exception& e)
+  {
+    LOG_ERROR("PYTHON INIT FAILED: %s", e.what());
+  }
+
+  addDevice("ui/IOBoard_0.ui");
+  
   SETTINGS->beginGroup("MainWindow");
   restoreGeometry(SETTINGS->value("geometry").toByteArray());
   restoreState(SETTINGS->value("state").toByteArray());
@@ -26,8 +39,12 @@ ModbusDevices::ModbusDevices(QWidget *parent)
   SETTINGS->endGroup();
   for each (auto f in files)
   {
-    addDevice(f);
+    //addDevice(f);
   }
+  
+  
+  
+  
 }
 
 ModbusDevices::~ModbusDevices()

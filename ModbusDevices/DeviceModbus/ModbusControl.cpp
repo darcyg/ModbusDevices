@@ -33,6 +33,8 @@ bool Modbus::poll(int tm)
     LOG_ERROR("Unknown slave ID: %d", _query[0]);
     return false;
   }
+  if (pdev->board())
+    pdev->board()->HandleRequest(_query, recv_bytes, pdev->modbusMap());
   modbus_set_slave(_modbus, pdev->slaveId());
   switch (_query[modbus_get_header_length(_modbus)])
   {
@@ -45,7 +47,7 @@ bool Modbus::poll(int tm)
     break;
 
   case MODBUS_WRITE_SINGLE_COIL:
-    LOG_INFO("MODBUS_WRITE_SINGLE_COIL");
+    //LOG_INFO("MODBUS_WRITE_SINGLE_COIL");
     modbus_reply(_modbus, _query, recv_bytes, pdev->modbusMap());
     break;
 

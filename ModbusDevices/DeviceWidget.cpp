@@ -9,6 +9,7 @@
 #include "DeviceModbus/DeviceModbus.h"
 #include "DeviceTura/DeviceTura.h"
 #include "IncludeMe.h"
+#include "include/Python.h"
 
 static Device* createDevice(const std::string& cls, int slave_id)
 {
@@ -65,7 +66,7 @@ void DeviceWidget::load(const QString& ui_file)
     this->device.reset(createDevice(value["class"].asString(), value["addr"].asUInt()));
     if (!this->device)
       MD_THROW("Unknown device class");
-    if (!this->device->load(value))
+    if (!this->device->load(value, ui_file))
       MD_THROW("Load device failed");
     
     ui.labelAddress->setText(this->device->caption());

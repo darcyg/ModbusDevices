@@ -131,6 +131,8 @@ enum {
 #define EMBUNKEXC  (EMBXGTAR + 4)
 #define EMBMDATA   (EMBXGTAR + 5)
 
+#define MB_REVERSE_16(v)   (((v & 0xFF) << 8) | ((v & 0xff00) >> 8))
+
 extern const unsigned int libmodbus_version_major;
 extern const unsigned int libmodbus_version_minor;
 extern const unsigned int libmodbus_version_micro;

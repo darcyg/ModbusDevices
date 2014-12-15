@@ -32,7 +32,7 @@ void DeviceTura::switchOff()
   wait();
 }
 
-bool DeviceTura::load(const Json::Value& json)
+bool DeviceTura::load(const Json::Value& json, const QString& fname)
 {
   if (json["dev"].isString())
     strncpy((char*)_dev_name, json["dev"].asCString(), 6);
