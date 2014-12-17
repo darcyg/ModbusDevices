@@ -1,10 +1,9 @@
 #include "DeviceModbus.h"
 #include "Convert.h"
 #include "ModbusControl.h"
-#include "Python/PythonCore.h"
 #include <QFileInfo>
 
-DeviceModbus::DeviceModbus(int sid) : slave_id(sid), abort(false), _modbus_mapping(nullptr)
+DeviceModbus::DeviceModbus(int sid) : slave_id(sid), abort(false), _modbus_mapping(nullptr), _pyobject(nullptr)
 {
   _modbus_mapping = modbus_mapping_new(0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF);
   _board = new IOBoard();
@@ -26,7 +25,7 @@ bool DeviceModbus::load(const Json::Value& json, const QString& fname)
     {
       QFileInfo fi(fname);
       auto str = fi.absolutePath() + "/" + value.asCString();
-      PYTHONCORE->runFile(str.toUtf8().constData(), json.toStyledString().c_str());
+      _pyobject = PYTHONCORE->runFile(str.toUtf8().constData(), json.toStyledString().c_str());
     }
     catch (md_exception& e)
     {

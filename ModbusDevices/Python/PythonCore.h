@@ -17,6 +17,8 @@ public:
   void runString(const char* str, const char *config = 0);
   PyObject* runFile(const char* fname, const char *config = 0);
 
+  bool registerFunction(const char* name, PyCFunction pyfunc);
+
 protected:
   void timerEvent(QTimerEvent* e);
 

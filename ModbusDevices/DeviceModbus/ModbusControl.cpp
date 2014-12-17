@@ -5,7 +5,6 @@ ModbusPoll* g_poll = ModbusPoll::Instance();
 
 Modbus::Modbus(std::string &port, int baudrate) : _port_name(port), _baudrate(baudrate)
 {
-  
 }
 
 DeviceModbus* Modbus::findDevice(int slave_id)
@@ -70,6 +69,23 @@ bool Modbus::poll(int tm)
   }
   pdev->updateWidgets();
   return true;
+}
+
+static PyObject * py_input_registers(PyObject * self, PyObject * args)
+{
+  PyObject* pymod = nullptr;
+  //if (!PyArg_ParseTuple(args, "O", &pymod))
+  //  return nullptr;
+  //PyObject* dict = PyDict_New();
+  //for ( auto reg : _modbus)
+  //for (int i = 0; i < )
+  return Py_None;
+}
+
+ModbusPoll::ModbusPoll() : _abort(false)
+{
+  //PYTHONCORE->registerFunction("input_registers", py_input_registers);
+  start();
 }
 
 bool ModbusPoll::addDevice(std::string& port_name, int baudrate, DeviceModbus* pdev)

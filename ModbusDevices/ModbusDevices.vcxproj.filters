@@ -123,6 +123,12 @@
     <ClCompile Include="Python\PythonCore.cpp">
       <Filter>python</Filter>
     </ClCompile>
+    <ClCompile Include="DeviceModbus\SerialModbus.cpp">
+      <Filter>DeviceModbus</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SerialModbus.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_ModbusDevices.h">
@@ -251,6 +257,12 @@
     </CustomBuild>
     <CustomBuild Include="ui\IOBoard_2.ui">
       <Filter>ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DeviceModbus\SerialModbus.h">
+      <Filter>DeviceModbus</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GeneratedFiles\Debug\SerialModbus.moc">
+      <Filter>Generated Files\Debug</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

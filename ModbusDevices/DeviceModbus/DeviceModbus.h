@@ -5,6 +5,7 @@
 #include "ModbusControl.h"
 #include "IOBoard.h"
 #include <QThread>
+#include "Python/PythonCore.h"
 
 class DeviceModbus : public Device
 {
@@ -33,6 +34,8 @@ public:
 
   IOBoard* board() { return _board;  }
 
+  //public PyObject* pyObject() { return _pyobject;  }
+
 protected:
 
 
@@ -44,5 +47,6 @@ private:
 
   std::vector<RegisterModbus>     _registers;
   IOBoard*          _board;
+  PyObject*         _pyobject;
 };
 

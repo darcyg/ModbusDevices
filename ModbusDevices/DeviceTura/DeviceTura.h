@@ -5,7 +5,6 @@
 #include "Value.h"
 #include <QThread>
 #include <QLabel>
-#include <QtSerialPort/QSerialPort>
 #include "windows.h"
 #include "Serial/Serial.h"
 

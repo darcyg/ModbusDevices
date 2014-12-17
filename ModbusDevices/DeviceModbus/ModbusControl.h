@@ -60,7 +60,7 @@ class ModbusPoll : public QThread, public Singleton<ModbusPoll>
   Q_OBJECT
 
 protected:
-  ModbusPoll() : _abort(false) { start(); }
+  ModbusPoll();
 
   void run();
 

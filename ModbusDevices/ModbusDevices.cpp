@@ -4,8 +4,14 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include "Python/PythonCore.h"
+#include "DeviceModbus/SerialModbus.h"
 
 QSettings *Settings::m_Settings = NULL;
+
+void dataReceived(const char* data, int size)
+{
+
+}
 
 ModbusDevices::ModbusDevices(QWidget *parent)
 : QMainWindow(parent)
@@ -29,7 +35,7 @@ ModbusDevices::ModbusDevices(QWidget *parent)
     LOG_ERROR("PYTHON INIT FAILED: %s", e.what());
   }
 
-  addDevice("ui/IOBoard_0.ui");
+  //addDevice("ui/IOBoard_0.ui");
   
   SETTINGS->beginGroup("MainWindow");
   restoreGeometry(SETTINGS->value("geometry").toByteArray());
@@ -43,7 +49,7 @@ ModbusDevices::ModbusDevices(QWidget *parent)
   }
   
   
-  
+  SerialModbus::open("COM1", 115200, dataReceived);
   
 }
 
@@ -125,4 +131,9 @@ void ModbusDevices::closeDevice()
 void ModbusDevices::closeTab(int tab)
 {
   removeDeviceTab(tab);
+}
+
+void ModbusDevices::timerEvent(QTimerEvent * event)
+{
+
 }

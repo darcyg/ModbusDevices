@@ -67,6 +67,23 @@ void PythonCore::initPython()
   PySys_SetObject("stderr", _module);
 }
 
+bool PythonCore::registerFunction(const char* name, PyCFunction pyfunc)
+{
+  PyMethodDef ml = { name, pyfunc, METH_VARARGS, NULL };
+  auto n = PyString_FromString("__main__");
+  auto v = PyCFunction_NewEx(&ml, (PyObject*)NULL, n);
+  
+  PyObject* modules = PyImport_GetModuleDict();
+  PyObject* main_mod = PyMapping_GetItemString(modules, "__main__");
+  auto d = PyModule_GetDict(main_mod);
+  PyDict_SetItemString(d, name, v);
+  Py_DECREF(d);
+  Py_DECREF(n);
+  Py_DECREF(main_mod);
+  Py_DECREF(v);
+  return true;
+}
+
 void PythonCore::runString(const char* str, const char *config)
 {
   if (!_module)
@@ -88,41 +105,23 @@ PyObject* PythonCore::runFile(const char* fname, const char *config)
   int fsz = ftell(fp);
   fseek(fp, 0, SEEK_SET);
   char *sbuf = new char[fsz + 1];
-  
-  //string sfname(fname);
-  //size_t np = sfname.rfind('/');
-  //if (np == string::npos)
-  //  np = sfname.rfind('\\');
-  //if (np == string::npos)
-  //  np = 0;
-  //else np++;
-  //string smod = string(fname).substr(np, sfname.rfind('.') != string::npos ? sfname.rfind('.') - np : sfname.length() - np);
-
-  PyObject* modules = PyImport_GetModuleDict();
   sbuf[fread(sbuf, 1, fsz, fp)] = 0;
-  PyObject* main_mod = PyMapping_GetItemString(modules, "__main__");
-  //PyObject* mod = PyModule_New(smod.c_str());
-  //mod = PyImport_AddModule(smod.c_str());
-  //PyObject* py_dict = PyModule_GetDict(mod);
-  //PyObject* main_dict = PyModule_GetDict(mod);
-  //PyObject* prun = PyRun_String("temp  = 9\nprint 'ASDASD %s'%temp", Py_file_input, py_dict, py_dict);
   if (PyRun_SimpleString(sbuf) != 0)
     MD_THROW("Script evaluation failed!");
   delete[] sbuf;
   fclose(fp);
-  
-  
-  
-  //PyObject* instance = PyObject_CallMethod(main_mod, "MyClass", "");
-  PyObject* attr = PyObject_GetAttrString(main_mod, "device_class");
-  PyObject* attr_str = PyObject_GetAttrString(main_mod, "devcls");
 
-  //py_log(nullptr, attr);
-  //PyObject_Print(attr, stdout, Py_PRINT_RAW);
+  PyObject* modules = PyImport_GetModuleDict();
+  PyObject* main_mod = PyMapping_GetItemString(modules, "__main__");
+
+  PyObject* attr_str = PyObject_GetAttrString(main_mod, "devcls");
 
   if (!attr_str)
     LOG_ERROR("FAIL ATTR");
   PyObject* instance = PyObject_CallMethod(main_mod, PyString_AsString(attr_str), "s", config);
+  Py_DECREF(main_mod);
+  Py_DECREF(modules);
+  Py_DECREF(attr_str);
   if (!instance)
   {
     LOG_ERROR("PYTHON: Can not create instance of '%s'", PyString_AsString(attr_str));
@@ -130,20 +129,6 @@ PyObject* PythonCore::runFile(const char* fname, const char *config)
     return nullptr;
   }
   py_log(Py_None, PyObject_Str(instance));
-  //PyObject_Print(PyObject_Str(instance), stdout, Py_PRINT_RAW);
-  //PyObject* instance2 = PyObject_CallMethod(main_mod, PyString_AsString(attr_str), "");
   
-  /*
-  for (int i = 0; i < PyList_Size(PyDict_Values(modules)); i++)
-  {
-    PyObject *pitem = PyList_GetItem(mod_list, i);
-    PyObject *str = PyObject_Str(pitem);
-
-    auto s = PyString_AsString(str);
-    LOG_INFO(s);
-
-    //PyObject_Print(pitem, stdout, Py_PRINT_RAW);
-  }
-  */
   return instance;
 }

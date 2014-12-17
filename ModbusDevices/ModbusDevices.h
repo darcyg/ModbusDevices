@@ -19,6 +19,9 @@ public slots:
   void closeDevice();
   void closeTab(int tab);
 
+protected:
+  void timerEvent(QTimerEvent * event);
+
 private:
   Ui::ModbusDevicesClass  ui;
   QStringList   _opened_files;
